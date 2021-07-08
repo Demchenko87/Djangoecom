@@ -22,13 +22,20 @@
     <div id="main" class="product-list">
         <h1>{% if category %}{{ category.name }}{% else %}Products{% endif %}</h1>
         {% for product in products %}
+
+
             <div class="item">
                 <a href="{{ product.get_absolute_url }}">
                     <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static "shop/no_image.png" %}{% endif %}">
                 </a>
                 <a href="{{ product.get_absolute_url }}">{{ product.name }}</a><br>
                 ${{ product.price }}
+                <br>
+                <a href="cart:cart_add">ADD</a>
+<a href="{% url 'cart:cart_add' product.id %}">Добавить в корзину</a>
             </div>
+
+
         {% endfor %}
     </div>
 {% endblock %}
